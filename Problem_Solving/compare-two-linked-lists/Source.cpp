@@ -1,7 +1,5 @@
 #include <iostream>
 
-// Complete the compare_lists function below.
-
 /*
  * For your reference:
  *
