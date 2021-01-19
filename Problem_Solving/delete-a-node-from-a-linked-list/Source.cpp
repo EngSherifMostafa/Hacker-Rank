@@ -1,5 +1,7 @@
 #include <iostream>
 
+// Complete the deleteNode function below.
+
 /*
  * For your reference:
  *

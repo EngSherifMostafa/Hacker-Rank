@@ -1,7 +1,6 @@
-#include <iostream>
-#include <vector>
 #include <algorithm>
-#include <iterator>
+#include <vector>
+#include <iostream>
 
 void display(std::vector<std::vector<int>> vects) {
 	//display 2D-Array after manipulation
@@ -18,6 +17,7 @@ void display(std::vector<long> vect) {
 
 
 long long int arrayManipulation(int n, std::vector<std::vector<int>> queries) {
+
 	std::vector<long long int> result(n + 1);
 	for (auto q : queries) {
 		if (q.size() > 2) {
@@ -39,6 +39,7 @@ long long int arrayManipulation(int n, std::vector<std::vector<int>> queries) {
 
 
 int main() {
+
 	std::vector<std::vector<int>> queries{
 		{ 5 , 3 },
 		{ 1 , 2 , 100 },

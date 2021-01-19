@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <iterator>
 
 /*
  * For your reference:

@@ -10,6 +10,7 @@
  *
  */
 void printLinkedList(SinglyLinkedListNode* head) {
+    
     for(auto cursor = head ; cursor != NULL ; cursor = cursor->next)
         std::cout << cursor->data << std::endl;
 

@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 /*
  * For your reference:
@@ -12,7 +11,8 @@
  *
  */
 SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
-    std::vector<int> vect;
+    
+    vector<int> vect;
     auto cursor1 = head1;
     auto cursor2 = head2;
 

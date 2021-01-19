@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <iterator>
 
 std::vector<int> dynamicArray(int n, std::vector<std::vector<int>> queries) {
+
     int lastAnswer = 0;
     int x = 0, y = 0;
     std::vector<int> result;
@@ -28,6 +28,7 @@ std::vector<int> dynamicArray(int n, std::vector<std::vector<int>> queries) {
 
 
 int main() {
+
     int n = 2;
     std::vector<std::vector<int>> queries{
         { 2 , 5 },
@@ -39,5 +40,6 @@ int main() {
     };
 
     auto result = dynamicArray(n, queries);
+
     std::copy(result.begin(), result.end(), std::ostream_iterator<int>(std::cout, " "));
 }

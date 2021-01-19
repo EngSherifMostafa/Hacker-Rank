@@ -1,5 +1,7 @@
 #include <iostream>
 
+// Complete the compare_lists function below.
+
 /*
  * For your reference:
  *
@@ -10,6 +12,7 @@
  *
  */
 bool compare_lists(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
+    
     if(head1->data != head2->data)
     return false;
     

@@ -10,6 +10,7 @@
  *
  */
 int getNode(SinglyLinkedListNode* head, int positionFromTail) {
+    
     //point to tail
     auto tail = head;    
     while (tail->next)

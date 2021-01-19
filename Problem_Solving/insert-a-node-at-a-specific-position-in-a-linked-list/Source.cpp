@@ -10,6 +10,7 @@
  *
  */
 SinglyLinkedListNode* insertNodeAtPosition(SinglyLinkedListNode* head, int data, int position) {
+
     typedef SinglyLinkedListNode* node_ptr;
     auto previous = head;
     node_ptr new_node = new SinglyLinkedListNode(data);

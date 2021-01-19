@@ -10,6 +10,7 @@
  *
  */
 SinglyLinkedListNode* insertNodeAtHead(SinglyLinkedListNode* llist, int data) {
+
     typedef SinglyLinkedListNode* node_ptr;
 
     node_ptr new_node = new SinglyLinkedListNode(data);

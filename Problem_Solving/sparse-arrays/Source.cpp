@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <iterator>
 
 std::vector<int> matchingStrings(std::vector<std::string> strings, std::vector<std::string> queries) {
+
 	std::vector<int> result;
 	auto count = 0;
 	
@@ -20,6 +20,7 @@ std::vector<int> matchingStrings(std::vector<std::string> strings, std::vector<s
 
 
 int main() {
+
 	std::vector<std::string> strings{
 		{ "aba"  },
 		{ "baba" },
