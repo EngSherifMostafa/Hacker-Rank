@@ -1,3 +1,3 @@
 # Hacker_Rank
-## Solving [hackerrank.com] website problems
+## Solving [a link] https://www.hackerrank.com/ website problems
 - Problem Solving
