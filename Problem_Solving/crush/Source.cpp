@@ -15,9 +15,7 @@ void display(std::vector<long> vect) {
 	std::copy(vect.begin(), vect.end(), std::ostream_iterator<long>(std::cout, "\t"));
 }
 
-
 long long int arrayManipulation(int n, std::vector<std::vector<int>> queries) {
-
 	std::vector<long long int> result(n + 1);
 	for (auto q : queries) {
 		if (q.size() > 2) {
@@ -37,9 +35,7 @@ long long int arrayManipulation(int n, std::vector<std::vector<int>> queries) {
 	return *max_element(result.begin(), result.end());
 }
 
-
 int main() {
-
 	std::vector<std::vector<int>> queries{
 		{ 5 , 3 },
 		{ 1 , 2 , 100 },

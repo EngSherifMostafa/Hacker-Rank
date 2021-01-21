@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+
 /*
  * For your reference:
  *
@@ -10,8 +11,7 @@
  *
  */
 SinglyLinkedListNode* reverse(SinglyLinkedListNode* head) {
-
-    if(head == nullptr)
+    if (head == nullptr)
     return nullptr;
     
     stack<int> stk;

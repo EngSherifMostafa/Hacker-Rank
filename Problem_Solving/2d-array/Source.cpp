@@ -4,7 +4,6 @@
 #include <iomanip>
 
 int hourglassSum(std::vector<std::vector<int>> arr) {
-
 	auto index = 0;
 	std::vector<int> hourglass(16);
 
@@ -23,9 +22,7 @@ int hourglassSum(std::vector<std::vector<int>> arr) {
 	return hourglass[0];
 }
 
-
 int main() {
-
 	std::vector<std::vector<int>> arr = {
 		{ -9 , -9 , -9 , 1 , 1 , 1 },
 		{  0 , -9 ,  0 , 4 , 3 , 2 },

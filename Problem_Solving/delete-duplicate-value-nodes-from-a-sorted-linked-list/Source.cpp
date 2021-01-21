@@ -93,7 +93,6 @@ void display(int dis_data) {
 }
 
 int main() {
-
     linkedlist lst;
 
     for (int i = 1; i <= 5; i++)

@@ -2,7 +2,6 @@
 #include <vector>
 
 std::vector<int> dynamicArray(int n, std::vector<std::vector<int>> queries) {
-
     int lastAnswer = 0;
     int x = 0, y = 0;
     std::vector<int> result;
@@ -26,9 +25,7 @@ std::vector<int> dynamicArray(int n, std::vector<std::vector<int>> queries) {
     return result;
 }
 
-
 int main() {
-
     int n = 2;
     std::vector<std::vector<int>> queries{
         { 2 , 5 },

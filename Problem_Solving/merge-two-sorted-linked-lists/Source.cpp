@@ -11,7 +11,6 @@
  *
  */
 SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
-    
     vector<int> vect;
     auto cursor1 = head1;
     auto cursor2 = head2;
