@@ -17,9 +17,7 @@ int hourglassSum(std::vector<std::vector<int>> arr) {
 		}
 	}
 
-	sort(hourglass.begin(), hourglass.end(), std::greater<int>());
-
-	return hourglass[0];
+	return *(std::max_element(hourglass.begin(),hourglass.end()));
 }
 
 int main() {

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iterator>
 
 std::vector<int> dynamicArray(int n, std::vector<std::vector<int>> queries) {
     int lastAnswer = 0;
