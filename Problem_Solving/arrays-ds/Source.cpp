@@ -2,8 +2,7 @@
 #include <vector>
 
 std::vector<int> reverseArray(std::vector<int> a) {
-	reverse(a.begin(), a.end());
-	return a;
+	return {a.rbegin(), a.rend()};
 }
 
 int main() {
