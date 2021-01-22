@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iterator>
 
 std::vector<int> matchingStrings(std::vector<std::string> strings, std::vector<std::string> queries) {
 	std::vector<int> result;
