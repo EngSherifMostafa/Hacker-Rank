@@ -5,16 +5,13 @@
 #include <algorithm>
 #include <iterator>
 
-
-
-
-int main() {
+void get_input(std::vector<std::vector<int>> &input) {
     int N = 0, M = 0;
     std::cin >> N; //N as number of elements in array at vector(1)
     std::cin >> M; //M as number of queries from vector(2) to vector(M + 2)
-    
+
     //M + 2 -> number of queries + first vector of (N , M) & second vector of array elements
-    std::vector<std::vector<int>> input(M + 2);
+    input.resize(M + 2);
 
     input.at(0).resize(2);
     input.at(1).resize(N);
@@ -34,12 +31,25 @@ int main() {
         std::cin >> input.at(query_index).at(1); //start range i
         std::cin >> input.at(query_index).at(2); //end range j
     }
+}
 
+void display(std::vector<std::vector<int>> towD_vector) {
     //display 2D-vector after input
-	for(auto vect : input) {
+	for(auto vect : towD_vector) {
 		std::copy(vect.begin(), vect.end(), std::ostream_iterator<int>(std::cout));
 		std::cout << std::endl;
 	}
+}
+
+
+int main() {
+    std::vector<std::vector<int>> input;
+    
+    get_input(input);
+    display(input);
+
+
+
 
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
     return 0;
