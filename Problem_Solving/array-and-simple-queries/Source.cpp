@@ -47,7 +47,7 @@ void get_input(std::vector<std::vector<int>>& input) {
 //index start from 1
 //range is inclusive
 void query_one(std::vector<int>& arr, const int& i, const int& j, const int& arr_size) {
-	auto start = i - 1;
+    auto start = i - 1;
     auto stop = j - 1;
     auto swap_at = 1;
     arr.resize(arr.size() + start, -1);
