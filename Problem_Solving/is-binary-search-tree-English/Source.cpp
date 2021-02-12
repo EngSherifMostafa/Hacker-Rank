@@ -15,12 +15,12 @@ The Node struct is defined as follows:
             return 0;
         
         return
-            is_BST_util(root->left, min, root->data) &&
+            is_BST_util(root->left, min, root->data - 1) &&
             is_BST_util(root->right, root->data + 1, max);
     }
 
 	bool checkBST(Node* root) {
         //is_BST_util(root, min, max)
-        // Constraints 0 <= data <= 10e4
-        return is_BST_util(root, -1, 10e4 + 1);
+        //constraints 0 <= data <= 10e4
+        return is_BST_util(root, 0, 10e4);
 	}
