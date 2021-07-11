@@ -1,121 +1,97 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
+#include<bits/stdc++.h>
+using namespace std;
 
-void display(const std::vector<std::vector<int>>& towD_vector) {
-    //display 2D-vector after input
-    for (auto vect : towD_vector) {
-        std::copy(vect.begin(), vect.end(), std::ostream_iterator<int>(std::cout));
-        std::cout << std::endl;
-    }
+struct Treap{
+    int val, prior, cnt;
+    Treap *l, *r;
+    Treap(int v): l(NULL), r(NULL), val(v), prior((rand() << 15) + rand()), cnt(1) {}
+} *root;
+
+int sz(Treap *t) {return (t == NULL) ? 0:t->cnt;}
+
+void upd_sz(Treap *t){
+    if(t) t->cnt = 1 + sz(t->l) + sz(t->r);
 }
 
-void display(const std::vector<int>& arr) {
-    std::copy(arr.begin(), arr.end(), std::ostream_iterator<int>(std::cout, " "));
+void split(Treap *t, Treap *&l, Treap *&r, int pos, int add = 0)
+{
+    if(!t) return void(l = r = NULL);
+    int cur_pos = add + sz(t->l) + 1;
+    if(cur_pos <= pos) split(t->r, t->r, r, pos, cur_pos), l = t;
+    else split(t->l, l ,t->l, pos, add), r = t;
+    upd_sz(t);
 }
 
-void get_input(std::vector<std::vector<int>>& input) {
-	auto N = 0, M = 0;
-    std::cin >> N; //N as number of elements in array at vector(1)
-    std::cin >> M; //M as number of queries from vector(2) to vector(M + 2)
-
-    //M + 2 -> number of queries + first vector of (N , M) & second vector of array elements
-    input.resize(M + 2);
-
-    input.at(0).resize(2);
-    input.at(1).resize(N);
-
-    //set N & M at vector(0)
-    input.at(0).at(0) = N;
-    input.at(0).at(1) = M;
-
-    //array elements -> N at vector(1)
-    for (auto array_index = 0; array_index < N; array_index++)
-        std::cin >> input.at(1).at(array_index);
-
-    //queries vectors -> M at vector(2)
-    for (auto query_index = 2; query_index < M + 2; query_index++) {
-        input.at(query_index).resize(3);
-        std::cin >> input.at(query_index).at(0); //query type
-        std::cin >> input.at(query_index).at(1); //start range i
-        std::cin >> input.at(query_index).at(2); //end range j
-    }
+void merge(Treap *&t, Treap *l, Treap *r)
+{
+    if(!l || !r) t = l? l:r;
+    else if(l->prior > r->prior) {merge(l->r, l->r, r); t = l;}
+    else {merge(r->l, l, r->l);t = r;}
+    upd_sz(t);
 }
 
-//remove from i to j and add them at front
-//index start from 1
-//range is inclusive
-void query_one(std::vector<int>& arr, const int& i, const int& j, const int& arr_size) {
-    auto start = i - 1;
-    auto stop = j - 1;
-    auto swap_at = 1;
-    arr.resize(arr.size() + start, -1);
-
-	//send all elements after end_rng to new space at end of arr
-    for (auto to_end = arr_size - 1; to_end > stop; to_end--, swap_at++)
-        std::swap(arr.at(to_end), *(arr.end() - swap_at));
-
-    //send all elements start from index 0 to index (start - 1) to after start index
-    swap_at = 1;
-    for (auto spec_index = 0; spec_index < start; spec_index++, swap_at++)
-        std::swap(arr.at(spec_index), arr.at(stop + swap_at));
-
-    for (auto itr = arr.begin(); itr != arr.end();) {
-        if (*itr != -1) break;
-        arr.erase(itr);
-        itr = arr.begin();
-    }
+void insert(Treap *&t, int pos, int val)
+{
+    Treap *l, *r, *cur = new Treap(val);
+    split(t, l, r, pos-1);
+    merge(t, l, cur);
+    merge(t, t, r);
 }
 
-//remove from i to j and add them at back
-//index start from 1
-//range is inclusive
-void query_two(std::vector<int>& arr, const int& i, const int& j) {
-    for (auto start = i - 1; start < j; start++) {
-        arr.emplace_back(arr.at(start));
-        arr.at(start) = -1;
-    }
-
-    for (auto itr = arr.begin(); itr != arr.end();) {
-        if (*itr != -1) {
-            ++itr;
-            continue;
-        }
-	
-        arr.erase(itr);
-        itr = arr.begin();
-    }
+void erase(Treap *&t, int pos)
+{
+    Treap *l, *r, *g;
+    split(t, l, r, pos-1);
+    split(r, g, r, 1);
+    merge(t, l, r);
 }
 
-int main() {
-    std::vector<std::vector<int>> input
+int find_kth(Treap *t, int k, int add = 0)
+{
+    assert(t);
+    int cur_pos = add + sz(t->l) + 1;
+    if(cur_pos == k) return t-> val;
+    if(cur_pos < k) return find_kth(t->r, k, cur_pos);
+    return find_kth(t->l, k, add);
+}
+
+
+int main()
+{
+    //freopen("in.txt", "r", stdin);
+    int i, j, k, n, m, v;
+    int type, l, r;
+    Treap *leftPart, *rightPart, *middlePart;
+
+    scanf("%d %d", &n, &m);
+    for(i = 1; i <= n; i++)
     {
-        { 8 , 4 },
-        { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 },
-        { 1 , 2 , 4 },
-        { 2 , 3 , 5 },
-    	{ 1 , 4 , 7 },
-    	{ 2 , 1 , 4 }
-    };
-
-    //get_input(input);
-
-    for (unsigned int vect_index = 2; vect_index < input.size(); vect_index++) {
-        //apply query one
-        if (input.at(vect_index).at(0) == 1)
-            query_one(input.at(1), input.at(vect_index).at(1), input.at(vect_index).at(2), input.at(1).size());
-
-        //apply query two
-        else if (input.at(vect_index).at(0) == 2)
-            query_two(input.at(1), input.at(vect_index).at(1), input.at(vect_index).at(2));
-
-        else
-            break;
+        scanf("%d", &v);
+        insert(root, i, v);
     }
 
-    std::cout << abs(input.at(1).front() - input.at(1).back()) << std::endl;
-	display(input.at(1));
+    for(i = 1; i <= m; i++)
+    {
+        scanf("%d %d %d", &type, &l, &r);
+
+        split(root, leftPart, rightPart, l-1);
+        split(rightPart, middlePart, rightPart, r-l+1);
+
+        if(type == 1)
+        {
+            merge(root, middlePart, leftPart);
+            merge(root, root, rightPart);
+        }
+        else
+        {
+            merge(root, leftPart, rightPart);
+            merge(root, root, middlePart);
+        }
+    }
+
+    printf("%d\n", abs(find_kth(root, 1) - find_kth(root, n)));
+    for(i = 1; i <= n; i++)
+        printf("%d ", find_kth(root, i));
 
     return 0;
 }
